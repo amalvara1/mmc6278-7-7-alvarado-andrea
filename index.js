@@ -51,3 +51,18 @@ var questionArr = [
         ]
     },
 ]
+
+
+var startquiz = true;
+
+var quiz = document.getElementById('quiz')
+
+function startQuiz(){
+    var btn = document.createElement('button');
+    btn.id = 'start-quiz';
+    quiz.appendChild(btn)
+    button.innerText = 'Start Quiz!'
+
+
+
+}
