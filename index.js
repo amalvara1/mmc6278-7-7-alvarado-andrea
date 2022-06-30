@@ -31,23 +31,23 @@ var questionArr = [
         ]
     },
     {
-        question: '',
-        answer: '',
+        question: 'What famous bear is known for Wild Fire Prevention?',
+        answer: 'Smokey the Bear',
         options: [
-            '',
-            '',
-            '',
-            '',
+            'Pooh Bear',
+            'Barenstein Bear',
+            'Smokey the Bear',
+            'Paddington Bear',
         ]
     },
     {
-        question: '',
-        answer: '',
+        question: 'what 80s inspired show involves the Upside Down?',
+        answer: 'Stranger Things',
         options: [
-            '',
-            '',
-            '',
-            '',
+            'Freaks and Geeks',
+            'Stranger Things',
+            'American Horror Story',
+            'Glow',
         ]
     },
 ]
