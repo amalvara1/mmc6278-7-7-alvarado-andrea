@@ -55,14 +55,22 @@ var questionArr = [
 
 var startquiz = true;
 
-var quiz = document.getElementById('quiz')
+var quiz = document.getElementById("quiz");
 
+//When page loads - create "start quiz" button element within the div 'quiz'
 function startQuiz(){
-    var btn = document.createElement('button');
-    btn.id = 'start-quiz';
-    quiz.appendChild(btn)
-    button.innerText = 'Start Quiz!'
+    var btn = document.createElement("button");
+    button.innerHTML = "Start Quiz!";
+    btn.id = "start-quiz";
+    btn.type = "submit";
+    document.quiz.appendChild(btn);
+    
+    btn.addEventListener("click", function(){
 
-
+    })
 
 }
+
+//setInterval function()
+
+//clearInterval function()
