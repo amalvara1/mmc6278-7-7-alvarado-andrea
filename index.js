@@ -1,5 +1,5 @@
 // Your code here
-var questionArr = [
+var questionsArr = [
     {
         question: 'What famous painter is known for their vibrant self portraits?',
         answer: 'Frida Kahlo',
@@ -58,18 +58,21 @@ var questionArr = [
 var quiz = document.getElementById("quiz");
 var questionIndex = 0;
 var correctAnswers = 0;
-
+var intervalId
 
 function gradeQuiz(){
     console.log(correctAnswers)
-    var percentage = correctAnswers/questionArr.length
+    var percentage = correctAnswers/questionsArr.length
     console.log(percentage)
     quiz.innerHTML = ""
-    quiz.innerHTML = percentage
+    quiz.innerHTML = "Current Score " + percentage * 100 + "%"
+    localStorage.setItem("previous-score", percentage)
+    questionIndex = 0
+    correctAnswers = 0
+    createStartbtn()
 }
 
-//When page loads - create "start quiz" button element within the div 'quiz'
-function startQuiz(){
+function createStartbtn() {
     var btn = document.createElement("button");
     btn.innerHTML = "Start Quiz!";
     btn.id = "start-quiz";
@@ -81,7 +84,17 @@ function startQuiz(){
         showQuestion()
 
     })
-
+}
+//When page loads - create "start quiz" button element within the div 'quiz'
+function startQuiz(){
+    var score = localStorage.getItem("previous-score")
+    if(score){
+    var p = document.createElement("p")
+    p.innerHTML = "Previous Score " + score * 100 +"%"
+    quiz.appendChild(p)
+    }
+    //console.log(score)
+   createStartbtn()
 }
 
 startQuiz()
@@ -89,7 +102,7 @@ startQuiz()
 
 function showQuestion(){
     quiz.innerHTML = ""
-    var question = questionArr[questionIndex]
+    var question = questionsArr[questionIndex]
     //console.log(question)
     var p = document.createElement("p");
     p.innerHTML = question.question
@@ -107,14 +120,40 @@ function showQuestion(){
             if( selection === question.answer){
                 correctAnswers++
             } 
-                questionIndex++
-                if(questionIndex === questionArr.length){
-                    gradeQuiz()
-                } else{showQuestion()}
+                endTimer()
         })
     }
         quiz.appendChild(div)
+        var ps = document.createElement("p")
+        ps.textContent = 30
+        ps.id = "timer"
+        quiz.appendChild(ps)
+        startTimer()
 }
-//setInterval function()
 
-//clearInterval function()
+function startTimer(){
+    intervalId = setInterval(function(){
+        var ps = document.getElementById("timer");
+        var seconds = Number(ps.textContent) -1
+        ps.textContent = seconds
+        if(seconds === -1) {
+            endTimer()
+        } else {}
+        //console.log(p)   
+    }, 1000)
+}
+
+function endTimer() {
+    clearInterval(intervalId)
+    questionIndex++
+    if(questionIndex === questionsArr.length){
+        gradeQuiz()
+    } else{showQuestion()}
+}
+
+
+//setInterval function()
+/*var timerId = setTimeout(function() {
+    console.log('here')
+}
+//clearInterval function(*/
